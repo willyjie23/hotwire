@@ -1,5 +1,7 @@
 {
   "name": "hotwire",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "stimulus": "^2.0.0"
+  }
 }
