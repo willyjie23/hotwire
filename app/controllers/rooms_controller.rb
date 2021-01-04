@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room, only: [:show, :edit, :update, :destroy, :password, :check_password]
 
   # GET /rooms
   # GET /rooms.json
@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to rooms_path, notice: 'Room was successfully created.' }
+        format.html { redirect_to rooms_path, notice: '開房啦' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.html { redirect_to @room, notice: '開房啦' }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit }
@@ -63,6 +63,18 @@ class RoomsController < ApplicationController
     end
   end
 
+  def password
+    redirect_to @room if @room.password.empty?
+  end
+
+  def check_password
+    if @room.password == params[:password]
+      redirect_to @room, notice: '密碼正確'
+    else
+      redirect_to rooms_url, notice: '密碼錯誤'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
@@ -71,6 +83,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.require(:room).permit(:message, :name)
+      params.require(:room).permit(:message, :name, :password)
     end
 end
