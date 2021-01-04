@@ -20,6 +20,6 @@
 <% end %>
 
 <div class="card mt-2" id="messages">
-  <%= render @room.messages %>
+  <%= render @room.messages.order(id: :desc) %>
 </div>
 
