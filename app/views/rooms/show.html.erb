@@ -1,9 +1,5 @@
 <%= turbo_stream_from "messages" %>
 
-<div class="card mt-2" id="messages">
-  <%= render @room.messages %>
-</div>
-
 <%= form_with(model: @message) do |form| %>
 <br>
   <form class="row g-3">
@@ -22,3 +18,8 @@
     </div>
   </form>
 <% end %>
+
+<div class="card mt-2" id="messages">
+  <%= render @room.messages %>
+</div>
+
