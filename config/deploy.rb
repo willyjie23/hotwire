@@ -2,7 +2,7 @@
 lock "~> 3.14.1"
 
 set :application, 'hotwire'
-set :repo_url, "git@github.com:willyjie23/hotwire.git"
+set :repo_url, 'git@github.com:willyjie23/hotwire.git'
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
