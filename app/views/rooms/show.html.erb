@@ -1,9 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%= turbo_stream_from "messages" %>
 
-<p>
-  <strong>Message:</strong>
-  <%= @room.message %>
-</p>
+<div class="card mt-2" id="messages">
+  <%= render @room.messages %>
+</div>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<%= form_with(model: @message) do |form| %>
+<br>
+  <form class="row g-3">
+    <div class="col-auto mb-2">
+      <%= form.text_field :user, class: "form-control", placeholder:"暱稱" %>
+    </div>
+
+    <div class="col-auto">
+      <%= form.text_field :message, class: "form-control", placeholder:"訊息" %>
+      <%= form.hidden_field :room_id, value: @room.id %>
+    </div>
+
+    <div class="col-auto text-right mt-2">
+      <button type="submit" class="btn btn-primary mb-3">送出</button>
+      <%= link_to 'Back', rooms_path %>
+    </div>
+  </form>
+<% end %>

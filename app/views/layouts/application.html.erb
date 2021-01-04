@@ -9,9 +9,21 @@
     <%= yield :head %>
     <%= turbo_include_tags %>
     <%= stimulus_include_tags %>
+    <!-- Just an image -->
+    
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <a href="<%= root_path %>" class="navbar-brand">匿名聊天啊</a>
+        <form class="d-flex">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

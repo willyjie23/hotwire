@@ -1,0 +1,6 @@
+{
+  "imports": { 
+    "stimulus": "/assets/stimulus/libraries/stimulus-0e7f836dc826730ef73c4145311bf995f9a4dd32c82b9dfb529f05ccf684c295.js",
+"hello_controller": "/assets/controllers/hello_controller-0c6588bdb948d64847bbdd4a1855933417d71af50b7fe18391cdce0c4d8f586a.js"
+  }
+}

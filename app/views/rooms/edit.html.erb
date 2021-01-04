@@ -1,6 +1,8 @@
 <h1>Editing Room</h1>
 
-<%= render 'form', room: @room %>
+<%= turbo_frame_tag dom_id(@room) do %>
+  <%= render 'form', room: @room %>
+<% end %>
 
 <%= link_to 'Show', @room %> |
 <%= link_to 'Back', rooms_path %>

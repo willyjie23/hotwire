@@ -1,24 +1,19 @@
-class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+class MessagesController < ApplicationController
+  before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
-    @room = Room.new
+    @messages = Message.all
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-    @messages = Message.all
-    @message = Message.new
   end
 
   # GET /rooms/new
-  def new
-    @room = Room.new
-  end
+  def new; end
 
   # GET /rooms/1/edit
   def edit; end
@@ -26,15 +21,16 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
-    @room = Room.new(room_params)
+    @message = Message.new(message_params)
+    room = params[:message][:room_id]
 
     respond_to do |format|
-      if @room.save
-        format.html { redirect_to rooms_path, notice: 'Room was successfully created.' }
-        format.json { render :show, status: :created, location: @room }
+      if @message.save
+        format.html { redirect_to room_path(room), notice: 'Room was successfully created.' }
+        format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
+        format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,12 +61,12 @@ class RoomsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_room
+    def set_message
       @room = Room.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def room_params
-      params.require(:room).permit(:message, :name)
+    def message_params
+      params.require(:message).permit(:message, :user, :room_id)
     end
 end
