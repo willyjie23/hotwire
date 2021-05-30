@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy, :password, :check_password]
+  # before_action :check_password, only: :show
 
   # GET /rooms
   # GET /rooms.json
@@ -11,14 +12,14 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    check_password if @room.password.present?
+
     @messages = Message.all
     @message = Message.new
   end
 
   # GET /rooms/new
-  def new
-    @room = Room.new
-  end
+  def new; end
 
   # GET /rooms/1/edit
   def edit; end
@@ -71,18 +72,18 @@ class RoomsController < ApplicationController
     if @room.password == params[:password]
       redirect_to @room, notice: '密碼正確'
     else
-      redirect_to rooms_url, notice: '密碼錯誤'
+      redirect_to rooms_path, notice: '密碼錯誤'
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_room
-      @room = Room.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_room
+    @room = Room.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def room_params
-      params.require(:room).permit(:message, :name, :password)
-    end
+  # Only allow a list of trusted parameters through.
+  def room_params
+    params.require(:room).permit(:message, :name, :password)
+  end
 end

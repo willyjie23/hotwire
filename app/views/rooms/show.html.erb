@@ -14,7 +14,7 @@
 
     <div class="col-auto text-right mt-2">
       <button type="submit" class="btn btn-primary mb-3">送出</button>
-      <%= link_to 'Back', rooms_path %>
+      <%= link_to 'Back', rooms_path, class: 'btn btn-danger mb-3' %>
     </div>
   </form>
 <% end %>
@@ -22,4 +22,3 @@
 <div class="card mt-2" id="messages">
   <%= render @room.messages.order(id: :desc) %>
 </div>
-
