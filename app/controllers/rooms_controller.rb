@@ -1,19 +1,16 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy, :password, :check_password]
-  # before_action :check_password, only: :show
+  before_action :set_room, only: %i[show edit update destroy]
 
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(created_at: :desc)
     @room = Room.new
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-    check_password if @room.password.present?
-
     @messages = Message.all
     @message = Message.new
   end
@@ -64,18 +61,6 @@ class RoomsController < ApplicationController
     end
   end
 
-  def password
-    redirect_to @room if @room.password.empty?
-  end
-
-  def check_password
-    if @room.password == params[:password]
-      redirect_to @room, notice: '密碼正確'
-    else
-      redirect_to rooms_path, notice: '密碼錯誤'
-    end
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_room
@@ -84,6 +69,6 @@ class RoomsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def room_params
-    params.require(:room).permit(:message, :name, :password)
+    params.require(:room).permit(:message, :name)
   end
 end

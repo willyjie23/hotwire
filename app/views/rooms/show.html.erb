@@ -2,6 +2,8 @@
 
 <%= form_with(model: @message) do |form| %>
 <br>
+  <h1>房名：<%= @room.name %></h1>
+
   <form class="row g-3">
     <div class="col-auto mb-2">
       <%= form.text_field :user, class: "form-control", placeholder:"暱稱" %>
@@ -14,7 +16,7 @@
 
     <div class="col-auto text-right mt-2">
       <button type="submit" class="btn btn-primary mb-3">送出</button>
-      <%= link_to 'Back', rooms_path, class: 'btn btn-danger mb-3' %>
+      <%= link_to '返回', rooms_path, class: 'btn btn-danger mb-3' %>
     </div>
   </form>
 <% end %>
