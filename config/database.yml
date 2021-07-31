@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: hotwire_production
+  database: hotwire
   username: deploy
   password: <%= ENV['HOTWIRE_DATABASE_PASSWORD'] %>
