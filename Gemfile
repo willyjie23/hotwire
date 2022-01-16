@@ -11,7 +11,7 @@ gem 'rails', '~> 6.1.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem "puma", "~> 5.0"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -39,10 +39,13 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'capistrano', '~> 3.11'
-  gem 'capistrano-rails', '~> 1.4'
-  gem 'capistrano-passenger', '~> 0.2.0'
+  gem "capistrano", "~> 3.15.0", require: false
+  gem "capistrano-rails", "~> 1.4", require: false
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+  gem "capistrano-bundler", "~> 1.6", require: false
+  gem "capistrano3-puma", "~> 5.0.4", require: false
+  gem "capistrano-rails-console", require: false
+  gem "capistrano-upload-config", require: false
 end
 
 group :development do
