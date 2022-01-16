@@ -21,3 +21,4 @@
 /config/credentials/production.key
 
 /config/master.key
+config/*.production.*
