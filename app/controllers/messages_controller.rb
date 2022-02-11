@@ -26,6 +26,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        format.html
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
